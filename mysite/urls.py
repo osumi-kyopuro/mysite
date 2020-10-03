@@ -22,7 +22,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 #from account import views
 from django.contrib.auth.decorators import login_required
-from decorator_include import decorator_include
+#from decorator_include import decorator_include
 urlpatterns = [
     path('', include('attendance2.urls')),
     path('admin/', admin.site.urls),
