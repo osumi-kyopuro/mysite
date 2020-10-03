@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <title>勤怠管理表</title>
+</head>
+ 
+<body>
+    <h1>全体の勤怠管理データ(時系列順)</h1>
+    <p>{{ message }}</p>
+    <table border="1">
+        <tr>
+            <th>スタッフ名</th>
+            <th>出勤予定時間</th>
+            <th>退勤予定時間</th>
+            <th>出勤時間</th>
+            <th>退勤時間</th>
+            <th>労働時間</th>
+            <th>遅刻</th>
+            <th>早退</th>
+            <th>欠勤</th>
+            <th>備考欄</th>
+            
+        </tr>
+        {% for member in data %}
+        <tr>
+            <td>{{ member.user}}</td>
+            <td>{{ member.scheduled_attend_time}}</td>
+            <td>{{ member.scheduled_leave_time}}</td>
+            <td>{{ member.attend_time }}</td>
+            <td>{{ member.leave_time}}</td>
+            <td>{{ member.work_time}}</td>
+            <td>{{ member.is_late}}</td>
+            <td>{{ member.is_early}}</td>
+            <td>{{ member.is_absence}}</td>
+            <td>{{ member.remarks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+{% if request.user.is_superuser %}
+    </a><a href='../new'>データ登録フォームへ</a><p />
+    </a><a href='../erase'>データ消去メニューへ</a><p />
+{% endif %}
+</a><a href='../list'>データ登録順で表示</a><p />
+</a><a href='../mylist'>自分のデータ表示</a><p />
+</a><a href='../'>勤怠管理ページへ</a><p />
+ 
+</html>
