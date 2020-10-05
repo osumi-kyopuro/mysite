@@ -21,8 +21,8 @@ def list_check(request):
     if latest_order.attend_time!=None and latest_order.leave_time!=None:
         latest_order.work_time = latest_order.leave_time - latest_order.attend_time
     latest_order.save()
-    c = Attendance.objects.filter(Q(user=latest_order.user), Q(scheduled_attend_time__range=(latest_order.scheduled_attend_time-timedelta(minutes=30),latest_order.scheduled_leave_time+timedelta(minutes=30)))|Q(scheduled_leave_time__range=(latest_order.scheduled_attend_time-timedelta(minutes=30),latest_order.scheduled_leave_time+timedelta(minutes=30)))|Q(scheduled_attend_time__gte=latest_order.scheduled_attend_time,scheduled_leave_time__lte=latest_order.scheduled_leave_time)).count()
-    if c >= 1:
+    c = Attendance.objects.filter(Q(user=latest_order.user), Q(scheduled_attend_time__range=(latest_order.scheduled_attend_time-timedelta(minutes=30),latest_order.scheduled_leave_time+timedelta(minutes=30)))|Q(scheduled_leave_time__range=(latest_order.scheduled_attend_time-timedelta(minutes=30),latest_order.scheduled_leave_time+timedelta(minutes=30)))|Q(scheduled_attend_time__lte=latest_order.scheduled_attend_time,scheduled_leave_time__gte=latest_order.scheduled_leave_time)).count()
+    if c > 1:
         Attendance.objects.latest('id').delete()
     data = Attendance.objects.all()
     params = {'message': 'データ一覧', 'data': data}
