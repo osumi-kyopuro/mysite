@@ -11,7 +11,7 @@
 - 「初期設定」の「6」は一般ユーザーアカウント作成の説明です。
 
 # 必要なもの
-- 「osumi.pythonanywhere.com」にて勤怠管理アプリを使用する場合は何もいりません。」
+- 「osumi.pythonanywhere.com」にて勤怠管理アプリを使用する場合は何もいりません。
 - python3.7
 - django2.2
 - git
